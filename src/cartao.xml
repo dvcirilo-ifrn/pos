@@ -1,8 +1,0 @@
- <cartao xmlns="http://cartaodevisitas.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://cartaodevisitas.org 
-                           cartao.xsd">
-   <nome>Luiz Silva</nome>
-   <titulo>Gerente, Lojas Pernambucanas S.A.</titulo>
-   <email>luiz.silva@pernambucanas.com.br</email>
-   <telefone>12%</telefone>
- </cartao>
