@@ -1,3 +1,5 @@
+slides/*.html
+build
+site
 venv
 __pycache__
-slides/*.html

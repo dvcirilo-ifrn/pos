@@ -1,0 +1,70 @@
+site_name: Programação Orientada a Serviços - IFRN/SPP
+site_author: Diego Cirilo
+site_description: 'Material de aula da disciplina de Programação Orientada a Serviços do IFRN/SPP'
+site_url: https://dvcirilo-ifrn.github.io/pos/
+copyright: Copyright &copy; 2023 - 2025 Diego Cirilo
+
+repo_name: dvcirilo-ifrn/pos
+repo_url: https://github.com/dvcirilo-ifrn/pos
+nav:
+  - Início: index.md
+  - Slides: 'slides.md'
+  - Tutoriais:
+    - 'tutoriais/index.md'
+    - 'Tutorial DRF': tutoriais/tutorial-drf.md
+
+  - Listas:
+    - 'listas/index.md'
+    - 'Lista 01': listas/lista01.md
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      linenums: true
+  - pymdownx.inlinehilite
+theme:
+  name: material
+  language: pt-BR
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - content.action.view
+    - content.code.copy
+    - navigation.footer
+    - navigation.indexes
+    # - navigation.sections
+    # - navigation.top
+  favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>"
+  logo: img/logo-if.png
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/dvcirilo-ifrn/psi
+extra_css:
+  - extra.css

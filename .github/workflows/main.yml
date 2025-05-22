@@ -38,34 +38,44 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Build MkDocs
+        run: |
+          python -m pip install -r requirements.txt
+          python -m mkdocs build
+          
       - name: Ensure build dir exists
-        run: mkdir -p build
+        run: mkdir -p site/build
 
       - name: Copy images directory (if exists)
-        run: if [[ -d img ]]; then cp -R img build/img; fi
+        run: if [[ -d img ]]; then cp -R img/* site/img/; fi
 
       - name: Marp Build html (build folder)
         uses: docker://marpteam/marp-cli:v4.1.1
         with:
-          args: -I slides/ -o build/
+          args: -I slides/ -o site/slides/
         env:
           MARP_USER: root:root
 
       - name: Marp Build pdf (build folder)
         uses: docker://marpteam/marp-cli:v4.1.1
         with:
-          args: --pdf --pdf-outlines --allow-local-files -I slides/ -o build/
+          args: --pdf --pdf-outlines --allow-local-files -I slides/ -o site/slides/
         env:
           MARP_USER: root:root
-          
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Upload site folder
+          path: 'site/'
 
       - name: Deploy to GitHub Pages
         id: deployment
