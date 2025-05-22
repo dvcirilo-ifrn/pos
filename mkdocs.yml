@@ -65,6 +65,6 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/dvcirilo-ifrn/psi
+      link: https://github.com/dvcirilo-ifrn/pos
 extra_css:
   - extra.css
