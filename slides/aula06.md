@@ -187,7 +187,7 @@ img {
 <style scoped>section { font-size: 20px; }</style>
 # Tarefa
 - Crie um XML `imobiliaria.xml` com DTD **interno** para os dados de uma imobiliária que cumpra os seguintes requisitos:
-    - O elemento raiz é `imobiliária` e deve conter um ou mais elementos `imovel`.
+    - O elemento raiz é `imobiliaria` e deve conter um ou mais elementos `imovel`.
     - O elemento `imovel` deve conter os sub-elementos `descricao`, `proprietario`, `endereco`, `caracteristicas` e `valor`.
     - O elemento `proprietario` deve conter os sub-elementos `nome` e pelo menos um `email` ou `telefone` (pode ter mais de um e pode ter os dois).
     - O elemento `endereco` deve conter os sub-elementos `rua`, `bairro`, `cidade` e `número`, que deve ser opcional.
