@@ -75,7 +75,6 @@ img {
 ```
 - `definicoes.dtd`
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
 <!ELEMENT nota (para,de,cabecalho,corpo)>
 <!ELEMENT para (#PCDATA)>
 <!ELEMENT de (#PCDATA)>
@@ -199,7 +198,7 @@ img {
     - Teste também um imóvel sem número.
 ---
 # Tarefa
-- Crie um XML válido com pelo menos 5 questões de 4 alternativas para o [quiz.dtd](https://raw.githubusercontent.com/dvcirilo/pos-ifrn/main/src/quiz.dtd)
+- Crie um XML válido com pelo menos 5 questões de 4 alternativas para o [quiz.dtd](https://raw.githubusercontent.com/dvcirilo-ifrn/pos-exemplos/refs/heads/main/quiz.dtd)
 - Use o VSCode para validar o XML.
 
 ---
