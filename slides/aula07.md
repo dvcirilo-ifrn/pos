@@ -22,6 +22,7 @@ img {
 **Aula 07**: XML Namespaces
 
 ---
+<style scoped>section { font-size: 20px; }</style>
 # Problemas
 - As tags XML são definidas pelo usuário.
 - Nomes de elementos iguais são ambíguos.
