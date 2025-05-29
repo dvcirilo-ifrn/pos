@@ -56,6 +56,7 @@ img {
 ```
 
 ---
+<style scoped>section { font-size: 22px; }</style>
 # Exemplo
 - XSD (cartao.xsd)
 ```xml
@@ -89,6 +90,7 @@ img {
 ```
 
 ---
+<style scoped>section { font-size: 22px; }</style>
 # Sintaxe
 - O elemento raiz do XSD é o `<schema>`
 - Alguns possíveis atributos do `<schema>`:
@@ -305,6 +307,7 @@ img {
 ```
 
 ---
+<style scoped>section { font-size: 22px; }</style>
 # Elementos apenas texto (com atributos)
 - Apenas elementos complexos podem ter atributos
 - Declaro um elemento complexo, mas com conteúdo simples, e os atributos
