@@ -53,7 +53,7 @@ img {
     - *boolean* (`true`/`false`)
     - *null*
 ---
-<style scoped>section { font-size: 28px; }</style>
+<style scoped>section { font-size: 24px; }</style>
 # Exemplo
 ```json
 {
