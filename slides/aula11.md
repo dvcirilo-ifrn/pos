@@ -268,6 +268,7 @@ print(response.json())
 - Ex. `python-twitter`, `pygithub`
 
 ---
+<style scoped>section { font-size: 22px; }</style>
 # Tarefa
 - Desenvolva um wrapper para o CRUD da API dos *users* com as funções `list`, `create`, `read`, `update` e `delete`.
 - Desenvolva uma CLI (como no exercício anterior) que use a sua biblioteca.
