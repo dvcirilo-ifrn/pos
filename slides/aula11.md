@@ -268,7 +268,7 @@ print(response.json())
 - Ex. `python-twitter`, `pygithub`
 
 ---
-# Exercício
+# Tarefa
 - Desenvolva um wrapper para o CRUD da API dos *users* com as funções `list`, `create`, `read`, `update` e `delete`.
 - Desenvolva uma CLI (como no exercício anterior) que use a sua biblioteca.
 - Exemplo de uso:
@@ -279,11 +279,11 @@ user = users.read(user_id)
 print(user["name"])
 
 # Listar usuários
-users-list = users.list()
+users_list = users.list()
+print(users_list)
 
 users.delete(user_id)
 ```
 ---
-# Clientes JavaScript
 
 # <!--fit--> Dúvidas? 🤔
