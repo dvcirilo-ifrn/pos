@@ -124,11 +124,15 @@ response = requests.request("POST", url, headers=headers, data=payload)
 print(response.text)
 print(response)
 ```
+
 ---
 # Tarefa
-
-- Utilize a função `CapitalCity` da API de exemplo para descobrir a capital da Nova Zelândia (NZ)
-- Realize testes com outras 3 funções (escolha) e faça o *parse* usando a biblioteca xml.dom.minidom
+- Acesse o catálogo das funções da API *CountryInfoService*: http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso
+- Escolha 3 funções da lista;
+- Escreva um programa que:
+    - Apresente um menu para as 3 funções (ex. "Digite 1 para moeda, 2 para etc...");
+    - Faça o *parse* dos resultados usando a biblioteca `xml.dom.minidom`;
+    - Imprima o resultado na tela;
 
 ---
 # Zeep
@@ -174,8 +178,12 @@ print(f"O código de telefone do {country_code} é {result}")
 
 ---
 # Tarefa
-- Utilizando a mesma lógica do exemplo, imprima o nome da capital da Noruega (NO)
-- Acesse a documentação da API de conversão de números [(link)](https://www.dataaccess.com/webservicesserver/NumberConversion.wso), descubra a URL do WSDL e faça um programa que imprime um número digitado (ex. 223) por extenso em inglês (ex. two hundred and twenty three)
+
+- Acesse a documentação da API de conversão de números [(link)](https://www.dataaccess.com/webservicesserver/NumberConversion.wso);
+- Descubra a URL do WSDL;
+- Usando essa API e o Zeep, faça um programa que:
+    - solicite ao usuário que digite um número inteiro (ex. 223);
+    - imprima um número digitado (ex. 223) por extenso em inglês (ex. two hundred and twenty three).
 
 ---
 # <!--fit--> Dúvidas? 🤔
