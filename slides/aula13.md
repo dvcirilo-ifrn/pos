@@ -153,7 +153,7 @@ print(response)
 - Authorization grant type: `authorization-code`
 - Redicert URIs: `http://localhost:5000/login/authorized`
 - Guarde o Client ID e Client Secret
-- [Exemplo](https://github.com/dvcirilo/pos-ifrn/tree/main/src/suap_oauth)
+- [Exemplo](https://github.com/dvcirilo-ifrn/pos-exemplos/tree/main/src/suap_oauth)
 
 ---
 # Acesso OAuth do SUAP com JavaScript
@@ -167,7 +167,11 @@ print(response)
 ---
 # Tarefa Final - Segunda Unidade
 
-- Faça um cliente do SUAP com autenticação OAuth que apresente o perfil do usuário com foto e permita a visualização dos boletins, com seleção de ano/semestre.
+- Utilizando o Flask, faça um cliente SUAP com 3 páginas:
+    - Página inicial com informações do sistema e botão de login com SUAP (OAuth);
+    - Página de perfil do usuário com informações principais e foto;
+    - Página do boletim, com a possibilidade de seleção de ano/semestre.
+- As páginas logadas devem exibir o nome/matrícula/avatar do usuário e o botão de logout em uma navbar.
 - Caprichem no front-end 😁
 
 ---
