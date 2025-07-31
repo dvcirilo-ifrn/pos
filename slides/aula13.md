@@ -153,7 +153,7 @@ print(response)
 - Authorization grant type: `authorization-code`
 - Redicert URIs: `http://localhost:5000/login/authorized`
 - Guarde o Client ID e Client Secret
-- [Exemplo](https://github.com/dvcirilo-ifrn/pos-exemplos/tree/main/src/suap_oauth)
+- [Exemplo](https://github.com/dvcirilo-ifrn/pos-exemplos/tree/main/suap_oauth)
 
 ---
 # Acesso OAuth do SUAP com JavaScript
