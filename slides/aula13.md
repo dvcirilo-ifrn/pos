@@ -170,7 +170,7 @@ print(response)
 - Utilizando o Flask, faça um cliente SUAP com 3 páginas:
     - Página inicial com informações do sistema e botão de login com SUAP (OAuth);
     - Página de perfil do usuário com informações principais e foto;
-    - Página do boletim, com a possibilidade de seleção de ano/semestre.
+    - Página do boletim, apresentando os dados completos fornecidos pela API, com a possibilidade de seleção de ano.
 - As páginas logadas devem exibir o nome/matrícula/avatar do usuário e o botão de logout em uma navbar.
 - Caprichem no front-end 😁
 
