@@ -57,7 +57,7 @@ print(response)
 ```
 
 ---
-# Tarefa
+# Prática
 
 - Faça um cliente que consiga listar os seguidores do usuário logado e seguir/parar de seguir um usuário no Github pelo terminal.
 
@@ -165,6 +165,7 @@ print(response)
 - [Exemplo](https://github.com/dvcirilo/cliente_suap_javascript)
 
 ---
+<style scoped>section { font-size: 26px; }</style>
 # Tarefa Final - Segunda Unidade
 
 - Utilizando o Flask, faça um cliente SUAP com 3 páginas:
