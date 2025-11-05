@@ -57,7 +57,7 @@ print(response)
 ```
 
 ---
-# Tarefa
+# Prática
 
 - Faça um cliente que consiga listar os seguidores do usuário logado e seguir/parar de seguir um usuário no Github pelo terminal.
 
@@ -153,7 +153,7 @@ print(response)
 - Authorization grant type: `authorization-code`
 - Redicert URIs: `http://localhost:5000/login/authorized`
 - Guarde o Client ID e Client Secret
-- [Exemplo](https://github.com/dvcirilo/pos-ifrn/tree/main/src/suap_oauth)
+- [Exemplo](https://github.com/dvcirilo-ifrn/pos-exemplos/tree/main/suap_oauth)
 
 ---
 # Acesso OAuth do SUAP com JavaScript
@@ -165,9 +165,14 @@ print(response)
 - [Exemplo](https://github.com/dvcirilo/cliente_suap_javascript)
 
 ---
+<style scoped>section { font-size: 26px; }</style>
 # Tarefa Final - Segunda Unidade
 
-- Faça um cliente do SUAP com autenticação OAuth que apresente o perfil do usuário com foto e permita a visualização dos boletins, com seleção de ano/semestre.
+- Utilizando o Flask, faça um cliente SUAP com 3 páginas:
+    - Página inicial com informações do sistema e botão de login com SUAP (OAuth);
+    - Página de perfil do usuário com informações principais e foto;
+    - Página do boletim, apresentando os dados completos fornecidos pela API, com a possibilidade de seleção de ano.
+- As páginas logadas devem exibir o nome/matrícula/avatar do usuário e o botão de logout em uma navbar.
 - Caprichem no front-end 😁
 
 ---
