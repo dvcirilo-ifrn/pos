@@ -27,6 +27,8 @@ img {
 - https://nextjs.org/learn/react-foundations
 - https://react.dev/learn
 
+![bg right w:400px](../img/React-icon.svg)
+
 ---
 
 # React
@@ -252,6 +254,33 @@ function App() {
 
 ---
 
+# Componentes em JSX
+
+- Deve retornar **apenas um elemento**.
+
+```jsx
+return (
+  <>
+    <h1>Título</h1>
+    <p>Texto</p>
+  </>
+)
+```
+
+---
+
+# Componentes em JSX
+
+- Elementos devem ser sempre fechados.
+
+```jsx
+<img src="foto.jpg" />
+<input type="text" />
+```
+
+
+---
+
 # Componentes com Props
 
 - Props (propriedades) são argumentos passados aos componentes.
@@ -353,6 +382,7 @@ function App() {
 ```
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 
 # Importação e Exportação de Componentes
 
@@ -375,8 +405,6 @@ export default function App() {
   return <h1>Aplicação</h1>
 }
 ```
-
----
 
 <!--
 ---
@@ -677,6 +705,347 @@ import logo from './assets/logo.png'
 function Header() {
   return <img src={logo} alt="Logo" />
 }
+```
+
+---
+
+# Estado no React
+
+- Representa dados dinâmicos que determinam o comportamento e a aparência de um componente.  
+- Sempre que o estado muda, o React atualiza automaticamente a interface.
+
+---
+
+# Estado no React
+- Exemplo: (`count` é o estado do componente e `setCount` é a função que o altera):
+
+```jsx
+import { useState } from 'react'
+
+function Contador() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <p>Você clicou {count} vezes</p>
+      <button onClick={() => setCount(count + 1)}>Clique</button>
+    </div>
+  )
+}
+```
+
+---
+
+# Como o Estado Funciona
+
+- Cada componente pode ter seu próprio estado.  
+- O React mantém o estado entre renderizações.  
+- Quando o estado muda, o componente é renderizado novamente.  
+- O estado é isolado: alterar o estado em um componente não afeta outro, a menos que seja compartilhado.
+
+---
+
+# Hooks e useState
+
+- O [hook](https://pt-br.react.dev/reference/react/hooks) `useState` é usado para criar e gerenciar estado em componentes funcionais.  
+- O React garante que o valor da variável seja preservado entre renderizações.
+- Sintaxe:
+
+```jsx
+const [variavel, setVariavel] = useState(valorInicial)
+```
+
+---
+
+# Estado e Eventos
+
+- Costuma ser atualizado em resposta a eventos;
+- Cliques, digitação ou resultados de requisições.
+
+```jsx
+function InputNome() {
+  const [nome, setNome] = useState('')
+
+  return (
+    <div>
+      <input value={nome} onChange={(e) => setNome(e.target.value)} />
+      <p>Olá, {nome}</p>
+    </div>
+  )
+}
+```
+
+---
+
+# Atualizações de Estado
+
+- As atualizações são assíncronas e podem ser agrupadas.  
+- Nunca se deve modificar o estado diretamente.
+- Errado:
+
+```jsx
+count = count + 1
+```
+
+- Certo:
+
+```jsx
+setCount(count + 1)
+```
+
+---
+
+# Estado Derivado
+
+- Evite calcular valores diretamente no estado quando podem ser derivados de outros valores.
+- Errado:
+
+```jsx
+const [dobro, setDobro] = useState(count * 2)
+```
+- Certo:
+
+```jsx
+const dobro = count * 2
+```
+
+---
+
+# Estado em Componentes Pai e Filho
+
+- O estado pode ser levantado para um componente pai e compartilhado com filhos via props.
+
+```jsx
+function Pai() {
+  const [mensagem, setMensagem] = useState('Olá')
+  return <Filho msg={mensagem} />
+}
+
+function Filho({ msg }) {
+  return <p>{msg}</p>
+}
+```
+
+---
+
+# Estado Global
+
+- Quando o estado precisa ser acessado por muitos componentes, ele pode ser movido para um contexto global.
+
+---
+<style scoped>section { font-size: 24px; }</style>
+
+# Context API
+
+- A Context API permite criar um estado acessível por toda a árvore de componentes.
+
+```jsx
+import { createContext, useContext, useState } from 'react'
+
+const TemaContext = createContext()
+
+export function TemaProvider({ children }) {
+  const [tema, setTema] = useState('claro')
+  return (
+    <TemaContext.Provider value={{ tema, setTema }}>
+      {children}
+    </TemaContext.Provider>
+  )
+}
+
+export function useTema() {
+  return useContext(TemaContext)
+}
+```
+
+---
+
+# Usando o Contexto
+
+```jsx
+function BotaoTema() {
+  const { tema, setTema } = useTema()
+
+  return (
+    <button onClick={() => setTema(tema === 'claro' ? 'escuro' : 'claro')}>
+      Alternar tema: {tema}
+    </button>
+  )
+}
+```
+
+---
+
+# Estado Assíncrono
+
+- O estado pode ser atualizado após operações assíncronas, como chamadas à API.
+
+```jsx
+import { useEffect, useState } from 'react'
+
+function Posts() {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(res => res.json())
+      .then(setPosts)
+  }, [])
+
+  return <p>Total de posts: {posts.length}</p>
+}
+```
+
+---
+
+# Rotas
+
+- Permitem que uma aplicação React tenha múltiplas páginas e URLs diferentes, sem recarregar o navegador.
+- O React Router é a biblioteca mais usada para isso.
+```bash
+npm install react-router-dom
+```
+
+---
+
+# Estrutura de Rotas
+
+- O React Router define rotas que associam URLs a componentes.
+
+```jsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Sobre from './pages/Sobre'
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sobre" element={<Sobre />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
+```
+
+---
+
+# Criando Páginas
+
+```jsx
+// src/pages/Home.jsx
+export default function Home() {
+  return <h1>Página Inicial</h1>
+}
+
+// src/pages/Sobre.jsx
+export default function Sobre() {
+  return <h1>Sobre o Projeto</h1>
+}
+```
+
+---
+
+# Links de Navegação
+
+- Para navegar entre páginas sem recarregar, use o componente Link.
+
+```jsx
+import { Link } from 'react-router-dom'
+
+function Menu() {
+  return (
+    <nav>
+      <Link to="/">Início</Link>
+      <Link to="/sobre">Sobre</Link>
+    </nav>
+  )
+}
+```
+
+---
+
+# Componente de Layout
+
+- Um layout permite incluir elementos comuns em todas as páginas, como cabeçalhos ou rodapés.
+
+```jsx
+import { Outlet, Link } from 'react-router-dom'
+
+function Layout() {
+  return (
+    <div>
+      <nav>
+        <Link to="/">Início</Link>
+        <Link to="/sobre">Sobre</Link>
+      </nav>
+      <hr />
+      <Outlet />
+    </div>
+  )
+}
+```
+
+---
+
+# Integrando Layout às Rotas
+
+```jsx
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="sobre" element={<Sobre />} />
+    </Route>
+  </Routes>
+</BrowserRouter>
+```
+
+---
+
+# Rotas com Parâmetros
+
+- Rotas podem conter parâmetros dinâmicos.
+
+```jsx
+<Route path="/posts/:id" element={<Post />} />
+```
+
+- No componente:
+
+```jsx
+import { useParams } from 'react-router-dom'
+
+function Post() {
+  const { id } = useParams()
+  return <h2>Post número {id}</h2>
+}
+```
+
+---
+
+# Navegação Programática
+
+- Para navegar via código, use o hook useNavigate.
+
+```jsx
+import { useNavigate } from 'react-router-dom'
+
+function BotaoVoltar() {
+  const navigate = useNavigate()
+  return <button onClick={() => navigate(-1)}>Voltar</button>
+}
+```
+
+---
+
+# Tratamento de Rotas Não Encontradas
+
+- Adicione uma rota padrão para exibir uma página 404.
+
+```jsx
+<Route path="*" element={<h1>Página não encontrada</h1>} />
 ```
 
 ---
