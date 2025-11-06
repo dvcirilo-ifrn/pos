@@ -406,143 +406,6 @@ export default function App() {
 }
 ```
 
-<!--
----
-
-# Início do Cliente React para a API JSONPlaceholder
-
-Vamos construir um cliente simples para consumir a API JSONPlaceholder, que simula recursos como posts e usuários.
-
----
-
-# Etapa 1: Criando o Projeto
-
-Crie o projeto com Vite:
-
-```bash
-npm create vite@latest cliente-react
-cd cliente-react
-npm install
-npm run dev
-```
-
----
-
-# Etapa 2: Estrutura do Projeto
-
-O projeto conterá:
-
-- src/api para comunicação com a API  
-- src/components para os componentes visuais  
-- src/App.jsx para a aplicação principal
-
----
-
-# Etapa 3: Cliente da API
-
-Crie o arquivo src/api/client.js
-
-```javascript
-const BASE_URL = 'https://jsonplaceholder.typicode.com'
-
-export async function getPosts() {
-  const res = await fetch(`${BASE_URL}/posts`)
-  return res.json()
-}
-```
-
----
-
-# Etapa 4: Componente de Lista de Posts
-
-Crie o arquivo src/components/PostList.jsx
-
-```jsx
-import { useEffect, useState } from 'react'
-import { getPosts } from '../api/client'
-
-export function PostList() {
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    getPosts().then(setPosts)
-  }, [])
-
-  return (
-    <div>
-      <h2>Posts</h2>
-      <ul>
-        {posts.slice(0, 10).map(post => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-```
-
----
-
-# Etapa 5: Integrando no App
-
-Edite src/App.jsx
-
-```jsx
-import { PostList } from './components/PostList'
-
-function App() {
-  return (
-    <div>
-      <h1>Cliente JSONPlaceholder</h1>
-      <PostList />
-    </div>
-  )
-}
-
-export default App
-```
-
----
-
-# Etapa 6: Estilizando com MUI
-
-Instale MUI:
-
-```bash
-npm install @mui/material @emotion/react @emotion/styled
-```
-
-Modifique o componente PostList:
-
-```jsx
-import { useEffect, useState } from 'react'
-import { getPosts } from '../api/client'
-import { Card, CardContent, Typography } from '@mui/material'
-
-export function PostList() {
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    getPosts().then(setPosts)
-  }, [])
-
-  return (
-    <>
-      <Typography variant="h4">Posts</Typography>
-      {posts.slice(0, 10).map(post => (
-        <Card key={post.id} sx={{ margin: 2 }}>
-          <CardContent>
-            <Typography variant="h6">{post.title}</Typography>
-            <Typography variant="body2">{post.body}</Typography>
-          </CardContent>
-        </Card>
-      ))}
-    </>
-  )
-}
-```
--->
-
 ---
 
 # Bibliotecas de Componentes Populares
@@ -833,6 +696,144 @@ function Filho({ msg }) {
 - Quando o estado precisa ser acessado por muitos componentes, ele pode ser movido para um contexto global.
 
 ---
+
+# Exemplo: JSONPlaceholder
+
+- Crie o projeto com Vite:
+
+```bash
+npm create vite@latest react-jsonplaceholder --template react
+cd react-jsonplaceholder
+npm install
+npm run dev
+```
+
+---
+
+# Exemplo: JSONPlaceholder
+
+- O projeto conterá:
+  - `src/api` para comunicação com a API  
+  - `src/components` para os componentes visuais  
+  - `src/App.jsx` para a aplicação principal
+
+---
+
+# Cliente da API
+
+- Crie o arquivo `src/api/client.js`:
+
+```javascript
+const BASE_URL = 'https://jsonplaceholder.typicode.com'
+
+export async function getPosts() {
+  const res = await fetch(`${BASE_URL}/posts`)
+  return res.json()
+}
+```
+
+---
+
+# Componente de Lista de Posts
+
+- Crie o arquivo `src/components/PostList.jsx`
+
+```jsx
+import { useEffect, useState } from 'react'
+import { getPosts } from '../api/client'
+
+export function PostList() {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    getPosts().then(setPosts)
+  }, [])
+
+  return (
+    <div>
+      <h2>Posts</h2>
+      <ul>
+        {posts.slice(0, 10).map(post => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+```
+
+---
+
+# Integrando no App
+
+- Edite `src/App.jsx`
+
+```jsx
+import { PostList } from './components/PostList'
+
+function App() {
+  return (
+    <div>
+      <h1>Cliente JSONPlaceholder</h1>
+      <PostList />
+    </div>
+  )
+}
+
+export default App
+```
+
+---
+
+# Estilizando com React-Bootstrap
+
+- Instale o React-Bootstrap:
+
+```bash
+npm install react-bootstrap bootstrap
+```
+
+- Importe o CSS global do Bootstrap (em `main.jsx` ou `index.jsx`):
+
+```jsx
+import 'bootstrap/dist/css/bootstrap.min.css'
+```
+
+---
+
+# Estilizando com React-Bootstrap
+
+- Modifique o componente **PostList**:
+
+```jsx
+import { useEffect, useState } from 'react'
+import { getPosts } from '../api/client'
+import { Card, Container } from 'react-bootstrap'
+
+export function PostList() {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    getPosts().then(setPosts)
+  }, [])
+
+  return (
+    <Container className="my-4">
+      <h2>Posts</h2>
+      {posts.slice(0, 10).map(post => (
+        <Card key={post.id} className="mb-3 shadow-sm">
+          <Card.Body>
+            <Card.Title>{post.title}</Card.Title>
+            <Card.Text>{post.body}</Card.Text>
+          </Card.Body>
+        </Card>
+      ))}
+    </Container>
+  )
+}
+```
+
+---
 <style scoped>section { font-size: 24px; }</style>
 
 # Context API
@@ -895,6 +896,79 @@ function Posts() {
   return <p>Total de posts: {posts.length}</p>
 }
 ```
+
+---
+# `useEffect`
+
+- *Hook* usado para executar *side effects* em componentes React.  
+- Exemplos de *side effects*:
+  - Buscar dados de uma API  
+  - Atualizar o título da página  
+  - Lidar com timers ou eventos externos
+
+```jsx
+useEffect(() => {
+  // código que será executado
+}, [dependencias])
+```
+
+---
+
+# `useEffect`
+
+- A função passada ao `useEffect` é executada depois que o componente renderiza.  
+- O array de dependências define quando o efeito deve ser executado.
+  - `[]`: apenas uma vez (ao montar)
+  - `[valor]`: sempre que `valor` mudar
+  - *(sem array)*: a cada renderização
+
+---
+
+# Exemplo: executa uma vez
+- Muito usado para carregar dados iniciais.
+
+```jsx
+useEffect(() => {
+  console.log('Componente montado!')
+}, [])
+```
+
+---
+
+# Exemplo: executa quando algo muda
+
+- O código é reexecutado sempre que `usuarioId` muda.  
+
+```jsx
+useEffect(() => {
+  console.log('Usuário mudou:', usuarioId)
+}, [usuarioId])
+```
+
+---
+
+# Exemplo com chamadas assíncronas
+
+Como `useEffect` não pode ser `async`, criamos uma função dentro dele:
+
+```jsx
+useEffect(() => {
+  async function fetchData() {
+    const res = await fetch('/api/dados')
+    const data = await res.json()
+    setDados(data)
+  }
+  fetchData()
+}, [])
+```
+
+---
+
+# Importante
+
+- Sempre limite as dependências ao que realmente precisa.  
+- Evite usar `useEffect` sem array: reexecuções infinitas.  
+- Prefira funções internas assíncronas e condições de saída (`if (!valor) return;`) para controlar o fluxo.
 
 ---
 
