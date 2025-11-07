@@ -825,7 +825,8 @@ export async function getPosts() {
 ```
 
 ---
-<style scoped>section { font-size: 24px; }</style>
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 16px; }</style>
 
 # Componente de Lista de Posts
 
@@ -893,7 +894,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 ```
 
 ---
-<style scoped>section { font-size: 24px; }</style>
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 16px; }</style>
 
 # Estilizando com React-Bootstrap
 
