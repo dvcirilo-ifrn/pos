@@ -412,54 +412,9 @@ export default function App() {
 
 - O React permite integrar bibliotecas de componentes prontos para acelerar o desenvolvimento.
 - Exemplos:
-    - [Bootstrap]()
-    - [Material UI (MUI)]()
-    - [shadcn/ui]()
-
----
-
-# Bootstrap para React
-
-```bash
-npm install react-bootstrap bootstrap
-```
-
-```jsx
-import { Button } from 'react-bootstrap'
-
-function App() {
-  return <Button variant="primary">Clique</Button>
-}
-```
-
----
-
-# Material UI (MUI)
-
-- Baseada no *Material Design* do Google.  
-
-```bash
-npm install @mui/material @emotion/react @emotion/styled
-```
-
-```jsx
-import Button from '@mui/material/Button'
-
-function App() {
-  return <Button variant="contained">Clique</Button>
-}
-```
-
----
-
-# shadcn/ui
-
-- Construída sobre o Tailwind CSS.  
-- Os componentes são copiados para o projeto, permitindo customização completa.
-
-```bash
-npx shadcn-ui@latest init
-```
+    - [React Bootstrap](https://react-bootstrap.netlify.app/)
+    - [Material UI (MUI)](https://mui.com/material-ui/)
+    - [shadcn/ui](https://ui.shadcn.com/)
 
 ---
 # Projeto React com Vite
@@ -696,144 +651,6 @@ function Filho({ msg }) {
 - Quando o estado precisa ser acessado por muitos componentes, ele pode ser movido para um contexto global.
 
 ---
-
-# Exemplo: JSONPlaceholder
-
-- Crie o projeto com Vite:
-
-```bash
-npm create vite@latest react-jsonplaceholder --template react
-cd react-jsonplaceholder
-npm install
-npm run dev
-```
-
----
-
-# Exemplo: JSONPlaceholder
-
-- O projeto conterá:
-  - `src/api` para comunicação com a API  
-  - `src/components` para os componentes visuais  
-  - `src/App.jsx` para a aplicação principal
-
----
-
-# Cliente da API
-
-- Crie o arquivo `src/api/client.js`:
-
-```javascript
-const BASE_URL = 'https://jsonplaceholder.typicode.com'
-
-export async function getPosts() {
-  const res = await fetch(`${BASE_URL}/posts`)
-  return res.json()
-}
-```
-
----
-
-# Componente de Lista de Posts
-
-- Crie o arquivo `src/components/PostList.jsx`
-
-```jsx
-import { useEffect, useState } from 'react'
-import { getPosts } from '../api/client'
-
-export function PostList() {
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    getPosts().then(setPosts)
-  }, [])
-
-  return (
-    <div>
-      <h2>Posts</h2>
-      <ul>
-        {posts.slice(0, 10).map(post => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-```
-
----
-
-# Integrando no App
-
-- Edite `src/App.jsx`
-
-```jsx
-import { PostList } from './components/PostList'
-
-function App() {
-  return (
-    <div>
-      <h1>Cliente JSONPlaceholder</h1>
-      <PostList />
-    </div>
-  )
-}
-
-export default App
-```
-
----
-
-# Estilizando com React-Bootstrap
-
-- Instale o React-Bootstrap:
-
-```bash
-npm install react-bootstrap bootstrap
-```
-
-- Importe o CSS global do Bootstrap (em `main.jsx` ou `index.jsx`):
-
-```jsx
-import 'bootstrap/dist/css/bootstrap.min.css'
-```
-
----
-
-# Estilizando com React-Bootstrap
-
-- Modifique o componente **PostList**:
-
-```jsx
-import { useEffect, useState } from 'react'
-import { getPosts } from '../api/client'
-import { Card, Container } from 'react-bootstrap'
-
-export function PostList() {
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    getPosts().then(setPosts)
-  }, [])
-
-  return (
-    <Container className="my-4">
-      <h2>Posts</h2>
-      {posts.slice(0, 10).map(post => (
-        <Card key={post.id} className="mb-3 shadow-sm">
-          <Card.Body>
-            <Card.Title>{post.title}</Card.Title>
-            <Card.Text>{post.body}</Card.Text>
-          </Card.Body>
-        </Card>
-      ))}
-    </Container>
-  )
-}
-```
-
----
 <style scoped>section { font-size: 24px; }</style>
 
 # Context API
@@ -969,6 +786,146 @@ useEffect(() => {
 - Sempre limite as dependências ao que realmente precisa.  
 - Evite usar `useEffect` sem array: reexecuções infinitas.  
 - Prefira funções internas assíncronas e condições de saída (`if (!valor) return;`) para controlar o fluxo.
+
+---
+
+# Exemplo: JSONPlaceholder
+
+- Crie o projeto com Vite:
+
+```bash
+npm create vite@latest react-jsonplaceholder --template react
+cd react-jsonplaceholder
+npm install
+npm run dev
+```
+
+---
+
+# Exemplo: JSONPlaceholder
+
+- O projeto conterá:
+  - `src/api` para comunicação com a API  
+  - `src/components` para os componentes visuais  
+  - `src/App.jsx` para a aplicação principal
+
+---
+
+# Cliente da API
+
+- Crie o arquivo `src/api/client.js`:
+
+```javascript
+const BASE_URL = 'https://jsonplaceholder.typicode.com'
+
+export async function getPosts() {
+  const res = await fetch(`${BASE_URL}/posts`)
+  return res.json()
+}
+```
+
+---
+<style scoped>section { font-size: 24px; }</style>
+
+# Componente de Lista de Posts
+
+- Crie o arquivo `src/components/PostList.jsx`
+
+```jsx
+import { useEffect, useState } from 'react'
+import { getPosts } from '../api/client'
+
+export function PostList() {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    getPosts().then(setPosts)
+  }, [])
+
+  return (
+    <div>
+      <h2>Posts</h2>
+      <ul>
+        {posts.slice(0, 10).map(post => ( // Pega os 10 primeiros
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+```
+
+---
+
+# Integrando no App
+
+- Edite `src/App.jsx`
+
+```jsx
+import { PostList } from './components/PostList'
+
+function App() {
+  return (
+    <div>
+      <h1>Cliente JSONPlaceholder</h1>
+      <PostList />
+    </div>
+  )
+}
+
+export default App
+```
+
+---
+
+# Estilizando com React-Bootstrap
+
+- Instale o React-Bootstrap:
+
+```bash
+npm install react-bootstrap bootstrap
+```
+
+- Importe o CSS global do Bootstrap (em `main.jsx` ou `index.jsx`):
+
+```jsx
+import 'bootstrap/dist/css/bootstrap.min.css'
+```
+
+---
+<style scoped>section { font-size: 24px; }</style>
+
+# Estilizando com React-Bootstrap
+
+- Modifique o componente **PostList**:
+
+```jsx
+import { useEffect, useState } from 'react'
+import { getPosts } from '../api/client'
+import { Card, Container } from 'react-bootstrap'
+
+export function PostList() {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    getPosts().then(setPosts)
+  }, [])
+
+  return (
+    <Container className="my-4">
+      <h2>Posts</h2>
+      {posts.slice(0, 10).map(post => ( // Pega os 10 primeiros
+        <Card key={post.id} className="mb-3 shadow-sm">
+          <Card.Body>
+            <Card.Title>{post.title}</Card.Title>
+            <Card.Text>{post.body}</Card.Text>
+          </Card.Body>
+        </Card>
+      ))}
+    </Container>
+  )
+}
+```
 
 ---
 
