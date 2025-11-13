@@ -794,7 +794,7 @@ useEffect(() => {
 - Crie o projeto com Vite:
 
 ```bash
-npm create vite@latest react-jsonplaceholder --template react
+npm create vite@latest react-jsonplaceholder -- --template react
 cd react-jsonplaceholder
 npm install
 npm run dev
