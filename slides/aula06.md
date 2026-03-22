@@ -29,6 +29,7 @@ img {
 - Validação de documentos externos.
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Validação de XML
 - Um XML que segue os padrões W3C é considerado *well-formed*, ou bem formado.
 - Exemplo:
@@ -40,6 +41,7 @@ img {
 - Para ser considerado **válido**, deve atender ao DTD definido.
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Exemplo
 - O DTD pode ser interno (no mesmo arquivo) ou externo.
 - Interno:
@@ -61,6 +63,7 @@ img {
 ```
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Exemplo
 - Externo:
 ```xml
@@ -85,7 +88,7 @@ img {
 ---
 # Sintaxe
 
-- `<!DOCTYPE nomeraiz ...>` -  Define o DTD e qual o elemento raiz.
+- `<!DOCTYPE nomeraiz ...>` -  Define o DTD e qual o elemento raiz (no XML).
 - `<!ELEMENT ...>` - Informações do elemento.
 - `<!ATTLIST ...>` - Informações dos atributos.
 - `<!ENTITY ...>` - Informações da entidade.
@@ -95,6 +98,7 @@ img {
 - `SYSTEM "nomedoarquivo.dtd"` - Arquivos externos (locais ou URL)
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Elementos
 - `<!ELEMENT nome (tipos-de-dados)>`
 - Tipos de dados:
@@ -119,6 +123,9 @@ img {
 
 ---
 # Exemplos
+```xml
+<!ELEMENT nome (#PCDATA)>
+```
 ```xml
 <!ELEMENT usuario (nome, cpf, endereco)>
 ```
@@ -169,11 +176,29 @@ img {
 - No XML chamamos com `&nome;`, ex:
     - `<autor>&escritor;&copyright;</autor>`
 
+---
+<style scoped>section { font-size: 20px; }</style>
+# Exemplo
+
+- Crie um DTD `equipamentos.dtd` para o exemplo da lista de computadores da aula passada, com os seguintes requisitos:
+- O elemento raiz é `equipamentos`;
+- `equipamentos` deve conter uma lista de um ou mais `computador`;
+- `computador` tem o atributo obrigatório `anoAquisicao` do tipo `CDATA`;
+- `computador` contém os seguintes elementos:
+    - `modelo`
+    - `processador`
+    - `memoria`: um ou mais, com os seguintes sub-elementos:
+        - `modelo`: opcional;
+        - `tamanho`;
+    - `armazenamento`
+    - `anoFabricacao`
+    - `quantidade`
+- Por padrão os campos são `PCDATA` e obrigatórios.
 
 ---
-<style scoped>section { font-size: 22px; }</style>
-# Tarefa
-- Crie um DTD `definicoes.dtd` para o XML da aula passada, os requisitos são os seguintes:
+<style scoped>section { font-size: 20px; }</style>
+# Tarefa 01
+- Crie um DTD `definicoes.dtd` para o `cardapio.xml` da aula passada, os requisitos são os seguintes:
     - Elemento raiz é `cardapio` e deve conter um ou mais elementos `prato`.
     - Elemento `prato` deve conter obrigatoriamente um atributo `id` do tipo ID;
     - Elemento `prato` deve conter os sub-elementos `nome`, `descricao`, `ingredientes`, `preco`, `calorias` e `tempoPreparo`;
@@ -185,7 +210,7 @@ img {
 
 ---
 <style scoped>section { font-size: 20px; }</style>
-# Tarefa
+# Tarefa 02
 - Crie um XML `imobiliaria.xml` com DTD **interno** para os dados de uma imobiliária que cumpra os seguintes requisitos:
     - O elemento raiz é `imobiliaria` e deve conter um ou mais elementos `imovel`.
     - O elemento `imovel` deve conter os sub-elementos `descricao`, `proprietario`, `endereco`, `caracteristicas` e `valor`.
@@ -197,8 +222,8 @@ img {
     - Inclua pelo menos um proprietário com 2 telefones e um email e outro apenas com um telefone.
     - Teste também um imóvel sem número.
 ---
-# Tarefa
-- Crie um XML válido com pelo menos 5 questões de 4 alternativas para o [quiz.dtd](https://raw.githubusercontent.com/dvcirilo-ifrn/pos-exemplos/refs/heads/main/quiz.dtd)
+# Tarefa 03
+- Crie um XML válido (`quiz.xml`) com pelo menos 5 questões de 4 alternativas para o [quiz.dtd](https://raw.githubusercontent.com/dvcirilo-ifrn/pos-exemplos/refs/heads/main/quiz.dtd)
 - Use o VSCode para validar o XML.
 
 ---

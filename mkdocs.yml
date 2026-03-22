@@ -2,7 +2,7 @@ site_name: Programação Orientada a Serviços - IFRN/SPP
 site_author: Diego Cirilo
 site_description: 'Material de aula da disciplina de Programação Orientada a Serviços do IFRN/SPP'
 site_url: https://dvcirilo-ifrn.github.io/pos/
-copyright: Copyright &copy; 2023 - 2025 Diego Cirilo
+copyright: Copyright &copy; 2023 - 2026 Diego Cirilo
 
 repo_name: dvcirilo-ifrn/pos
 repo_url: https://github.com/dvcirilo-ifrn/pos
@@ -15,8 +15,8 @@ nav:
 
   - Listas:
     - 'listas/index.md'
-    - 'Lista 01': listas/lista01.md
-    - 'Lista 02': listas/lista02.md
+    - 'Unidade 01 - Lista 01': listas/lista01.md
+    - 'Unidade 01 - Lista 02': listas/lista02.md
 markdown_extensions:
   - admonition
   - attr_list

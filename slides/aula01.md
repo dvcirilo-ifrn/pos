@@ -40,6 +40,7 @@ img {
     3.2. Bibliotecas JSON
 
 ---
+<style scoped>section { font-size: 26px; }</style>
 # Ementa
 4. Computação orientada a serviços
     4.1. Objetivos e benefícios da computação orientada a serviço
@@ -72,34 +73,45 @@ img {
 
 ---
 # Linguagens e Ferramentas
-- HTML/JS
-- Python/Flask
+
+- HTML/CSS/JS
+- Python/Django
+- DRF/Flask/FastAPI
+- React/React Native
+- Node.js/Expo/Electron
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Cronograma
 
-## Primeira Unidade (23/03 a 29/05):
-- Item 4 da ementa;
-- Seminário/Resumo/Quiz (50pts) - 18/05 e 19/05 (provável)
-- Quiz (50pts) - 26/05 (provável)
+## Primeira Unidade:
+- Itens 4, 1, 2 e 3 da ementa;
+- Quiz 01 (SOA) (25pts)
+- Quiz 02 (XML/JSON) (25pts)
+- Tarefas práticas (50pts)
 
-## Segunda Unidade (30/05 a 02/08)
-- Itens 1, 2 e 3 da ementa;
-- Tarefas práticas em sala de aula (50pts) - toda semana
-- Quiz (50pts) - 28/07 (provável)
+## Segunda Unidade
+- Item 6 da ementa;
+- Quiz (30pts)
+- Tarefas práticas em sala de aula (40pts)
+- Projeto em dupla (30pts)
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Cronograma
 
-## Terceira Unidade (26/08 a 02/11):
+## Terceira Unidade:
 - Itens 6 e 5 da ementa;
-- Tarefas práticas em sala de aula (50pts) - toda semana
-- Projeto em dupla (50pts) - 27/10 (provável)
+- Quiz (30pts)
+- Tarefas práticas em sala de aula (40pts)
+- Projeto em dupla (30pts)
 
-## Quarta Unidade (03/11 a 09/01/2024)
-- Item 5 da ementa;
-- Tarefas práticas em sala de aula (50pts) - toda semana
-- Projeto em dupla (50pts) - 05/01/2024 (provável)
+## Quarta Unidade
+- Desenvolvimento de projeto final;
+- Projeto final em grupo:
+    - Cliente/App (40pts);
+    - Serviço/API (40pts);
+    - Apresentação (20pts).
 
 ---
 

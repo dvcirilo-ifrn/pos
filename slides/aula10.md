@@ -52,6 +52,7 @@ img {
 - ...
 
 ---
+<style scoped>section { font-size: 26px; }</style>
 # Exemplo
 ```xml
 <biblioteca>
@@ -74,6 +75,7 @@ img {
 ```
 
 ---
+<style scoped>section { font-size: 20px; }</style>
 # Exemplo
 ```python
 from xml.dom.minidom import parse
@@ -103,15 +105,16 @@ for livro in livros:
     print("Ano:", ano)
     print("---\n")
 ```
+
 ---
-# Tarefa
-- Usando a biblioteca `xml.dom.minidom` do Python, escreva um programa que faça o *parse* do arquivo `cardapio.xml` das tarefas anteriores.
+# Tarefa 08
+- Usando a biblioteca `xml.dom.minidom` do Python, escreva um programa (`parse_cardapio.py`) que faça o *parse* do arquivo `cardapio.xml` das tarefas anteriores.
 - O programa deve apresentar ao usuário um Menu com os IDs e nomes dos pratos e perguntar qual prato o usuário deseja saber mais detalhes.
 - Ao digitar o ID e apertar enter, o programa deve imprimir todas as informações do prato.
 - Exemplo da saída no próximo slide.
-- [DICA](https://github.com/dvcirilo/pos-ifrn/blob/main/src/biblioteca.py)
 
 ---
+<style scoped>section { font-size: 26px; }</style>
 # Exemplo
 ```sh
 $ python cardapio.py
@@ -166,6 +169,7 @@ table {
 | None	 |  null  |
 
 ---
+<style scoped>section { font-size: 22px; }</style>
 # Exemplos
 
 ```python
@@ -193,14 +197,18 @@ with open("data.json", "w") as json_file:
 json_string = json.dumps(data)
 
 ```
----
-# Exercício
-
-- Baseado nos exemplos das aulas anteriores, faça o *parse* do arquivo XML da imobiliária para um arquivo JSON equivalente.
 
 ---
-# Exercício
-- Já com o arquivo JSON da imobiliária, faça um programa interativo para visualização dos dados dos imóveis, no mesmo padrão do exercício anterior (do cardápio).
+
+# Tarefa 09
+
+- Escreva um script Python (`imobiliaria2json.py`) que faça o *parse* do arquivo XML da imobiliária para um arquivo JSON equivalente;
+    - O programa deve ler o arquivo `imobiliaria.xml` e criar um arquivo `imobiliaria.json`.
+
+---
+
+# Tarefa 10
+- Já com o arquivo JSON da imobiliária, faça um programa interativo para visualização dos dados dos imóveis (`cli_imobiliaria.py`), no mesmo padrão do exercício anterior (do cardápio).
 - O programa deve apresentar ao usuário um Menu com um índice(ID) dos imóveis e perguntar qual imóvel o usuário deseja saber mais detalhes.
 - Ao digitar o ID e apertar enter, o programa deve imprimir todas as informações do imóvel, em uma formatação legível.
 

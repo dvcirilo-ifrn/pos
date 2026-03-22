@@ -44,6 +44,7 @@ img {
 - Auto-descritivo.
 
 ---
+<style scoped>section { font-size: 22px; }</style>
 # Exemplo
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -147,17 +148,34 @@ img {
 ```xml
 <![CDATA[texto com <><<#$%^]]>
 ```
+---
+<style scoped>section { font-size: 24px; }</style>
+# Exemplo
+
+- Crie um XML para o gerenciamento de computadores de uma empresa com a seguinte estrutura:
+    - Equipamentos (raiz):
+        - Computador:
+            - Ano de aquisição (atributo)
+            - Modelo
+            - Processador
+            - Memórias
+            - Armazenamento
+            - Ano de fabricação
+            - Quantidade
 
 ---
-# Tarefa
-- Crie um XML para um cardápio real de pelo menos 5 itens contendo os seguintes elementos:
-    - Atributo: id
-    - Nome do prato
-    - Descrição
-    - Ingredientes
-    - Preço
-    - Calorias
-    - Tempo de preparo (estimado)
+<style scoped>section { font-size: 24px; }</style>
+# Exercício
+- Crie um XML (`cardapio.xml`) para um cardápio de pelo menos 5 pratos com a seguinte estrutura:
+    - Cardápio (raiz):
+        - Prato:
+            - ID (atributo)
+            - Nome do prato
+            - Descrição
+            - Ingredientes
+            - Preço
+            - Calorias
+            - Tempo de preparo (estimado)
 
 ---
 # <!--fit--> Dúvidas? 🤔

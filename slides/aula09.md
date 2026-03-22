@@ -53,7 +53,7 @@ img {
     - *boolean* (`true`/`false`)
     - *null*
 ---
-<style scoped>section { font-size: 24px; }</style>
+<style scoped>section { font-size: 18px; }</style>
 # Exemplo
 ```json
 {
@@ -87,9 +87,9 @@ img {
 }
 ```
 ---
-# Tarefa
+# Tarefa 07
 - Converta os 3 XMLs gerados nas atividades anteriores para JSON
-    - Cardápio, Imobiliária e Quiz.
+    - `cardapio.json`, `imobiliaria.json` e `quiz.json`.
 - Converta os atributos para elementos.
 - [JSON Lint](https://jsonlint.com/)
 

@@ -56,7 +56,7 @@ img {
 ```
 
 ---
-<style scoped>section { font-size: 22px; }</style>
+<style scoped>section { font-size: 18px; }</style>
 # Exemplo
 - XSD (cartao.xsd)
 ```xml
@@ -101,6 +101,7 @@ img {
 - [Detalhes](https://stackoverflow.com/questions/1463138/what-does-elementformdefault-do-in-xsd)
 
 ---
+<style scoped>section { font-size: 26px; }</style>
 # Sintaxe
 - Para incluir o XSD no XML:
     - `xmlns="http://cartaodevisitas.org"` namespace padrão.
@@ -145,6 +146,7 @@ img {
     - `whiteSpace`
 
 ---
+<style scoped>section { font-size: 26px; }</style>
 # Restrições
 ```xml
 <element name="percentual">
@@ -241,6 +243,7 @@ img {
 ```
 
 ---
+<style scoped>section { font-size: 26px; }</style>
 # Elementos *complexos* - extensão
 ```xml
 <complexType name="cadPessoa">
@@ -327,6 +330,7 @@ img {
 ```
 
 ---
+<style scoped>section { font-size: 26px; }</style>
 # Elementos mistos (texto, sub-elementos e atributos)
 ```xml
 <element name="carta" type="tipoCarta"/>
@@ -458,7 +462,7 @@ img {
 
 ---
 <style scoped>section { font-size: 22px; }</style>
-# Tarefa
+# Tarefa 04
 - Crie um XSD `cardapio.xsd` para o XML da aula 05 (`cardapio.xml`), os requisitos são os seguintes:
     - Elemento raiz é `cardapio` e deve conter um ou mais elementos `prato`.
     - Elemento `prato` deve conter obrigatoriamente um atributo `id` do tipo `integer`;
@@ -469,8 +473,8 @@ img {
 - Valide seu XML com esse XSD
 
 ---
-<style scoped>section { font-size: 20px; }</style>
-# Tarefa
+<style scoped>section { font-size: 18px; }</style>
+# Tarefa 05
 - Crie um XSD `imobiliaria.xsd` para os dados de uma imobiliária que cumpra os seguintes requisitos:
     - O elemento raiz é `imobiliária` e deve conter um ou mais elementos `imovel`.
     - O elemento `imovel` deve conter os sub-elementos `descricao`, `proprietario`, `endereco`, `caracteristicas` e `valor`.
@@ -484,7 +488,7 @@ img {
     - Teste também um imóvel sem número.
 
 ---
-# Tarefa
+# Tarefa 06
 - Crie um XSD equivalente ao DTD [quiz.dtd](https://dvcirilo.github.io/pos-ifrn/src/quiz.dtd)
 - Use o VSCode para validar o XML criado para essa questão na aula 06.
 

@@ -1,4 +1,4 @@
-# Unidade 02
+# Unidade 01 - Lista 02
 
 1. O que significa dizer que o XML é uma linguagem auto-descritiva? Dê um exemplo simples.
 1. Quais são os requisitos para um XML ser bem formado? Cite pelo menos 3.
