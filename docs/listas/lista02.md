@@ -7,6 +7,3 @@
 1. Qual a vantagem do XML Schema em relação ao DTD? Cite 2 recursos que o XSD tem e o DTD não.
 1. O que diferencia JSON de XML na estrutura dos dados? Dê um exemplo curto com nome e idade.
 1. O que faz a função `getElementsByTagName` no parser XML com Python? Que biblioteca devemos importar para usar essa função?
-1. Quais são os métodos HTTP usados em APIs REST? Relacione cada um com a ação (criar, ler, etc.).
-1. O que é uma mensagem SOAP? Quais são as partes obrigatórias?
-1. Quais são as diferenças entre Basic Auth, API Key e OAuth? Dê um exemplo de uso de cada uma.

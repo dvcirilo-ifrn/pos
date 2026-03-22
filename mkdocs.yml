@@ -15,8 +15,11 @@ nav:
 
   - Listas:
     - 'listas/index.md'
-    - 'Unidade 01 - Lista 01': listas/lista01.md
-    - 'Unidade 01 - Lista 02': listas/lista02.md
+    - 'Unidade 01':
+      - 'Lista 01': listas/lista01.md
+      - 'Lista 02': listas/lista02.md
+    - 'Unidade 02':
+      - 'Lista 03': listas/lista03.md
 markdown_extensions:
   - admonition
   - attr_list
