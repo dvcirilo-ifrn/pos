@@ -489,7 +489,7 @@ img {
 
 ---
 # Tarefa 06
-- Crie um XSD equivalente ao DTD [quiz.dtd](https://dvcirilo.github.io/pos-ifrn/src/quiz.dtd)
+- Crie um XSD equivalente ao DTD [quiz.dtd](https://raw.githubusercontent.com/dvcirilo-ifrn/pos-exemplos/refs/heads/main/quiz.dtd)
 - Use o VSCode para validar o XML criado para essa questão na aula 06.
 
 ---
