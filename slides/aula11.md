@@ -269,10 +269,12 @@ print(response.json())
 
 ---
 <style scoped>section { font-size: 22px; }</style>
-# Tarefa
+
+# Tarefa 11
 - Desenvolva um wrapper para o CRUD da API dos *users* com as funções `list`, `create`, `read`, `update` e `delete`.
 - Desenvolva uma CLI (como no exercício anterior) que use a sua biblioteca.
 - Exemplo de uso:
+
 ```python
 import users_wrapper as users
 
