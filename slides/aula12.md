@@ -126,7 +126,7 @@ print(response)
 ```
 
 ---
-# Tarefa
+# Tarefa 12
 - Acesse o catálogo das funções da API *CountryInfoService*: http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso
 - Escolha 3 funções da lista;
 - Escreva um programa que:
@@ -177,7 +177,7 @@ print(f"O código de telefone do {country_code} é {result}")
 ```
 
 ---
-# Tarefa
+# Tarefa 13
 
 - Acesse a documentação da API de conversão de números [(link)](https://www.dataaccess.com/webservicesserver/NumberConversion.wso);
 - Descubra a URL do WSDL;
