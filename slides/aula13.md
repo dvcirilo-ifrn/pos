@@ -80,7 +80,7 @@ password = getpass()
 
 data = {"username":user,"password":password}
 
-response = requests.post(api_url+"v2/autenticacao/token/", json=data)
+response = requests.post(api_url+"token/pair", json=data)
 token = response.json()["access"]
 print(response.json())
 
@@ -90,14 +90,14 @@ headers = {
 
 print(headers)
 
-response = requests.get(api_url+"v2/minhas-informacoes/meus-dados/", headers=headers)
+response = requests.get(api_url+"rh/eu/", headers=headers)
 
 print(response.text)
 print(response)
 ```
 
 ---
-# Tarefa
+# Tarefa 14
 - Faça um cliente que se autentique com as API Keys do SUAP e retorne o boletim do aluno formatado no terminal.
 - A formatação deve ser no estilo tabela, indicando a disciplina e notas de todas as unidades.
 
@@ -166,7 +166,7 @@ print(response)
 
 ---
 <style scoped>section { font-size: 26px; }</style>
-# Tarefa Final - Segunda Unidade
+# Tarefa 15
 
 - Utilizando o Flask, faça um cliente SUAP com 3 páginas:
     - Página inicial com informações do sistema e botão de login com SUAP (OAuth);
