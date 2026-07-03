@@ -48,7 +48,7 @@ img {
 
 ---
 
-# Características Principais do React
+# Características Principais
 
 - Baseado em componentes reutilizáveis  
 - Renderização declarativa  
@@ -94,6 +94,15 @@ img {
 - Atualizações manuais no DOM  
 - Estado da aplicação espalhado em várias partes do código  
 - Dificuldade para testar e reaproveitar componentes
+
+---
+
+# Estado em Interfaces
+
+- **Estado**: dados que podem mudar ao longo do tempo e que afetam o que é exibido na tela.  
+- Exemplos: texto digitado, item selecionado, resultado de uma requisição.
+- A interface deve refletir o estado atual a cada momento.
+- Quando o estado muda, a interface precisa ser atualizada para continuar consistente com ele.
 
 ---
 

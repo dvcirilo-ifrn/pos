@@ -40,46 +40,13 @@ img {
 - Em meados dos anos 2000 surgiram os *runtimes* nativos, como o Node.js
 
 ---
-# Versões do JavaScript
-
-- Padrão ECMAScript (*European Computer Manufacturers Association*)
-- Iniciais
-    - ECMAScript 1 (1997): Primeira versão padronizada para compatibilidade entre navegadores.
-    - ECMAScript 3 (1999): Introduziu tratamento de erros, expressões regulares e estabeleceu a base do JavaScript moderno.
-
----
-# Versões do JavaScript
-
-- ECMAScript 5 (2009)
-    - Adicionou modo estrito, suporte a JSON e métodos de arrays (map, filter, reduce).
-
-- ECMAScript 6 (ES6, 2015)
-  - Let/Const (variáveis de escopo de bloco).
-  - *Arrow functions*.
-  - Classes e módulos.
-  - *Promises* para operações assíncronas.
-
----
-# Recursos Modernos do JavaScript
-
-- ECMAScript 2016-2017 (ES7 & ES8)
-    - ES7 (2016): Adicionou `Array.prototype.includes()` e o operador de exponenciação (`**`).
-    - ES8 (2017): Introduziu async/await e métodos de objeto como `Object.entries()`.
-
-- ECMAScript 2018-2023 (ES9 a ES13)
-    - Operadores spread/rest para objetos.
-    - Encadeamento opcional (`?.`) e operador de coalescência nula (`??`).
-    - Top-level await para simplificar operações assíncronas.
-
-
----
+<style scoped>section { font-size: 26px; }</style>
 # Runtimes do JS
 
 - Node.js
     - Ambiente de execução de JavaScript *server-side*.
     - Utiliza a *engine* V8 do Chrome.
     - Oferece APIs para acessar o sistema de arquivos, redes e outras funcionalidades do servidor.
-
 - Browser Engines
     - V8 (Chrome, Edge), SpiderMonkey (Firefox), JavaScriptCore (Safari).
     - Executam JavaScript diretamente nos navegadores, oferecendo suporte para aplicações web interativas.
@@ -171,14 +138,6 @@ document.body.appendChild(paragrafo);
 ```
 
 ---
-# jQuery
-- Biblioteca desenvolvida pra simplificar a manipulação da DOM, eventos, requisições, etc.
-- Usa uma linguagem menos *verbosa* que o JavaScript puro (*Vanilla*)
-- Já foi "obrigatória", hoje é possível fazer *quase* tudo sem ela.
-- Mesmo assim, ainda é mais cômodo utiliza-la.
-- [*You might not need jQuery*](https://youmightnotneedjquery.com/)
-
----
 # Eventos JS
 - Os eventos reagem a ações do usuário, servidor ou temporizadas
 - Permitem a execução de funções quando algo acontece
@@ -190,6 +149,7 @@ elemento.addEventListener('click', function() {
 ```
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Funções no JS
 - Funções padrão:
 ```js
@@ -318,13 +278,6 @@ fetch('https://api.exemplo.com/usuario/1', {
 ```
 
 ---
-# Tarefa
-- Desenvolva a interface e crie um cliente web para uma API aberta.
-- Exemplos:
-    - [JSON Placeholder](https://jsonplaceholder.typicode.com/), [PokeAPI](https://pokeapi.co/), [Tabela FIPE](https://deividfortuna.github.io/fipe/), etc.
-- O cliente deve listar mais de um nível de informações, ex. usuários e to-dos do usuário, fabricante e modelos e veículos.
-
----
 # Módulos
 
 - Permitem a melhor organização do código
@@ -372,16 +325,20 @@ import { myFunction } from './myModule.js';
 - [Documentação](https://vite.dev/)
 
 ---
-# Tarefa
-
-- Converta o seu cliente JS para uma estrutura JS Vanilla do Vite.js
+# Tarefa 16
+- Desenvolva a interface e crie um cliente web para uma API aberta usando um projeto JS Vanilla do Vite.js.
+- O cliente deve listar mais de um nível de informações, ex. usuários e to-dos do usuário, fabricante e modelos e veículos.
 - Separe o .js que se comunica com a API em um *wrapper* e o .js que manipula a DOM usando módulos
+- Exemplos de APIs abertas:
+    - [JSON Placeholder](https://jsonplaceholder.typicode.com/), [PokeAPI](https://pokeapi.co/), [SWAPI](https://swapi.dev/),  [Tabela FIPE](https://deividfortuna.github.io/fipe/), etc.
+
 
 ---
 # Referências
 - https://javascript.info/
 - https://developer.mozilla.org/pt-BR/docs/Web/JavaScript
 - https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript
+- https://vite.dev/
 
 ---
 # <!--fit--> Dúvidas? 🤔
