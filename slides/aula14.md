@@ -325,6 +325,24 @@ import { myFunction } from './myModule.js';
 - [Documentação](https://vite.dev/)
 
 ---
+# Comandos *Vite*
+- Criar um projeto *vanilla* na pasta atual
+```
+npm create vite@latest . -- --template vanilla
+```
+- Rodar o servidor de desenvolvimento
+```
+npx vite dev
+```
+- Fazer a *build* (*bundling*)
+```
+npx vite build
+```
+- Testar a *build* (arquivos estáticos em `dist/`
+```
+npx vite preview
+```
+---
 # Tarefa 16
 - Desenvolva a interface e crie um cliente web para uma API aberta usando um projeto JS Vanilla do Vite.js.
 - O cliente deve listar mais de um nível de informações, ex. usuários e to-dos do usuário, fabricante e modelos e veículos.
