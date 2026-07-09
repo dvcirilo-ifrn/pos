@@ -338,7 +338,7 @@ npx vite dev
 ```
 npx vite build
 ```
-- Testar a *build* (arquivos estáticos em `dist/`
+- Testar a *build* (arquivos estáticos em `dist/`)
 ```
 npx vite preview
 ```
