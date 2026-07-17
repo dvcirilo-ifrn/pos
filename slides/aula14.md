@@ -325,6 +325,8 @@ import { myFunction } from './myModule.js';
 - [Documentação](https://vite.dev/)
 
 ---
+<style scoped>section { font-size: 26px; }</style>
+
 # Comandos *Vite*
 - Criar um projeto *vanilla* na pasta atual
 ```
