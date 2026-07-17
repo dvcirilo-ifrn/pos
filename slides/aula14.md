@@ -204,9 +204,6 @@ hello = val => "Hello " + val;
 - Podemos consumir as promessas com:
     - `.then(callback)` - função executada se der certo
     - `.catch(callback)` - função executada se falhar
-
----
-# *Promises*
 ```js
 promessa
     .then(resultado => {
@@ -240,20 +237,9 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
 # *Async/Await*
 - No ES8 surge a sintaxe de *async* e *await* para Promises
 - Torna o código um pouco mais legível
-- As funções assíncronas são declaradas com *async* e a chamada de funções assíncronas com *await*
-```js
-async function minhaFuncaoAssincrona() {
-    try {
-        const resultado = await promessa;
-        console.log(resultado);  // "Operação bem-sucedida!"
-    } catch (erro) {
-        console.error(erro);  // "Erro na operação."
-    }
-}
-
-minhaFuncaoAssincrona();
-```
-
+- Funções assíncronas são declaradas com `async`
+- A chamada de uma função assíncrona usa `await` (dentro de outra função `async`, ou no topo em módulos/console)
+- Substitui `.then()`/`.catch()` por `try`/`catch`
 
 ---
 # Fetch API
@@ -264,6 +250,7 @@ minhaFuncaoAssincrona();
 ---
 # Exemplo (async/await)
 - `await` fora de uma função só funciona no console do navegador ou em um *módulo* (`<script type="module">`).
+- Sem `await`, a chamada retorna a própria *Promise* pendente, não o valor resolvido.
 
 ```js
 async function buscarDados() {
@@ -303,36 +290,6 @@ async function atualizarUsuario() {
 
 const data = await atualizarUsuario();
 console.log('Atualizado:', data);
-```
-
----
-# Acessando os Dados (async/await)
-- `data` só existe **dentro** da função `async`.
-- A função retorna uma *Promise*, então usar o resultado fora dela sem `await` não funciona.
-
-```js
-// Errado: data não existe fora da função assíncrona
-async function buscarDados() {
-    const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
-    return await response.json();
-}
-
-const data = buscarDados();
-console.log(data); // Promise { <pending> }
-```
-
----
-# Acessando os Dados (async/await)
-- Para acessar o valor fora, é preciso usar `await` também na chamada, dentro de outra função `async`.
-
-```js
-// Certo
-async function main() {
-    const data = await buscarDados();
-    console.log(data); // objeto com os dados
-}
-
-main();
 ```
 
 ---
