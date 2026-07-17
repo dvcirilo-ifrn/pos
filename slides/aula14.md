@@ -91,10 +91,10 @@ const bejeto = {
 ---
 # Strings
 - Podem ser delimitadas com:
-    - ````
-    - ""
-    - ''
-- O ```` é chamado de *string literal* e permite interpolação, múltiplas linhas, etc.
+    - `` `string` ``
+    - `"string"`
+    - `'string'`
+- O `` ` `` é chamado de *string literal* e permite interpolação, múltiplas linhas, etc.
 ```js
 const cor = "azul";
 const informacao = `O display é ${cor}.`;
@@ -202,8 +202,8 @@ hello = val => "Hello " + val;
 ---
 # *Promises*
 - Podemos consumir as promessas com:
-    - `.then()` - função executada se der certo
-    - `.catch()` - função executada se falhar
+    - `.then(callback)` - função executada se der certo
+    - `.catch(callback)` - função executada se falhar
 
 ---
 # *Promises*
@@ -215,6 +215,25 @@ promessa
     .catch(erro => {
         console.error(erro);  // "Falha na operação."
     });
+```
+
+---
+# Acessando os Dados (.then)
+- Relembrando: o valor resolvido só está disponível **dentro do callback** passado para `.then()` (ou encadeando outro `.then()`).
+
+```js
+// Errado: data não existe fora do .then()
+let data;
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => response.json())
+    .then(result => { data = result; });
+
+console.log(data); // undefined, o fetch ainda não terminou
+
+// Certo: use o valor dentro do callback
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => response.json())
+    .then(data => console.log(data)); // objeto com os dados
 ```
 
 ---
@@ -243,7 +262,9 @@ minhaFuncaoAssincrona();
 - Retorna uma *Promise*
 
 ---
-# Exemplo
+# Exemplo (async/await)
+- `await` fora de uma função só funciona no console do navegador ou em um *módulo* (`<script type="module">`).
+
 ```js
 async function buscarDados() {
     try {
@@ -251,30 +272,67 @@ async function buscarDados() {
         if (!response.ok) {
             throw new Error('Erro: ' + response.status);
         }
-        const data = await response.json();
-        console.log(data);
+        return await response.json();
     } catch (error) {
         console.error('Erro:', error);
     }
 }
 
-buscarDados();
+const data = await buscarDados();
+console.log(data);
 ```
 
 ---
-# Fetch API
-- Outras opções:
+# Exemplo (async/await)
+- Outras opções (ex. `PUT`, `headers`, `body`):
 ```js
-fetch('https://api.exemplo.com/usuario/1', {
-    method: 'PUT',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ nome: 'Maria', idade: 28 })
-})
-    .then(response => response.json())
-    .then(data => console.log('Atualizado:', data))
-    .catch(error => console.error('Erro:', error));
+async function atualizarUsuario() {
+    try {
+        const response = await fetch('https://api.exemplo.com/usuario/1', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nome: 'Maria', idade: 28 })
+        });
+        return await response.json();
+    } catch (error) {
+        console.error('Erro:', error);
+    }
+}
+
+const data = await atualizarUsuario();
+console.log('Atualizado:', data);
+```
+
+---
+# Acessando os Dados (async/await)
+- `data` só existe **dentro** da função `async`.
+- A função retorna uma *Promise*, então usar o resultado fora dela sem `await` não funciona.
+
+```js
+// Errado: data não existe fora da função assíncrona
+async function buscarDados() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+    return await response.json();
+}
+
+const data = buscarDados();
+console.log(data); // Promise { <pending> }
+```
+
+---
+# Acessando os Dados (async/await)
+- Para acessar o valor fora, é preciso usar `await` também na chamada, dentro de outra função `async`.
+
+```js
+// Certo
+async function main() {
+    const data = await buscarDados();
+    console.log(data); // objeto com os dados
+}
+
+main();
 ```
 
 ---
@@ -345,13 +403,16 @@ npx vite build
 npx vite preview
 ```
 ---
-# Tarefa 16
-- Desenvolva a interface e crie um cliente web para uma API aberta usando um projeto JS Vanilla do Vite.js.
+<style scoped>section { font-size: 26px; }</style>
+
+# Projeto 01
+- Crie um fork do repositório disponibilizado no GSA.
+- Inicialize um projeto Vite.js com o template *vanilla* na raiz do repositório.
+- Desenvolva a interface e crie um cliente web para uma API aberta usando a estrutura do template JS Vanilla do Vite.js.
 - O cliente deve listar mais de um nível de informações, ex. usuários e to-dos do usuário, fabricante e modelos e veículos.
 - Separe o .js que se comunica com a API em um *wrapper* e o .js que manipula a DOM usando módulos
 - Exemplos de APIs abertas:
     - [JSON Placeholder](https://jsonplaceholder.typicode.com/), [PokeAPI](https://pokeapi.co/), [SWAPI](https://swapi.dev/),  [Tabela FIPE](https://deividfortuna.github.io/fipe/), etc.
-
 
 ---
 # Referências
