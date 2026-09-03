@@ -278,6 +278,23 @@ return (
 
 ---
 
+# Fragmentos
+
+- Fragmentos (`<></>`) permitem agrupar múltiplos elementos sem criar uma nova tag no DOM.
+
+```jsx
+function App() {
+  return (
+    <>
+      <h1>Título</h1>
+      <p>Texto de exemplo</p>
+    </>
+  )
+}
+```
+
+---
+
 # Componentes em JSX
 
 - Elementos devem ser sempre fechados.
@@ -355,23 +372,6 @@ function Lista({ itens }) {
 ```
 
 - O atributo `key` é obrigatório para ajudar o React a identificar cada item da lista.
-
----
-
-# Fragmentos
-
-- Fragmentos (`<></>`) permitem agrupar múltiplos elementos sem criar uma nova tag no DOM.
-
-```jsx
-function App() {
-  return (
-    <>
-      <h1>Título</h1>
-      <p>Texto de exemplo</p>
-    </>
-  )
-}
-```
 
 ---
 
@@ -624,7 +624,8 @@ setCount(count + 1)
 
 # Estado Derivado
 
-- Evite calcular valores diretamente no estado quando podem ser derivados de outros valores.
+- Considere que `count` já é um estado (criado com `useState`):
+    - Não crie outro estado para valores derivados.
 - Errado:
 
 ```jsx
@@ -633,7 +634,7 @@ const [dobro, setDobro] = useState(count * 2)
 - Certo:
 
 ```jsx
-const dobro = count * 2
+const dobro = count * 2 // atualiza junto com count
 ```
 
 ---
@@ -657,7 +658,35 @@ function Filho({ msg }) {
 
 # Estado Global
 
-- Quando o estado precisa ser acessado por muitos componentes, ele pode ser movido para um contexto global.
+- Quando o estado precisa ser acessado por muitos componentes em níveis diferentes da árvore, passar props manualmente (*prop drilling*) fica repetitivo e difícil de manter.
+- A solução é mover esse estado para um **contexto global**, acessível diretamente por quem precisa dele.
+
+---
+<style scoped>section { font-size: 24px; }</style>
+
+# Prop Drilling
+
+- E se `Neto` precisar de `tema`, mas ele está vários níveis abaixo de `App`?
+- O componente `Pai` só repassa a prop, sem usá-la.
+
+```jsx
+function App() {
+  const [tema, setTema] = useState('claro')
+  return <Pai tema={tema} />
+}
+
+function Pai({ tema }) {
+  return <Filho tema={tema} /> // só repassa
+}
+
+function Filho({ tema }) {
+  return <Neto tema={tema} /> // só repassa
+}
+
+function Neto({ tema }) {
+  return <p>Tema atual: {tema}</p> // só aqui é usado
+}
+```
 
 ---
 <style scoped>section { font-size: 24px; }</style>
@@ -686,20 +715,56 @@ export function useTema() {
 ```
 
 ---
-
-# Usando o Contexto
+# Usando o contexto
 
 ```jsx
-function BotaoTema() {
-  const { tema, setTema } = useTema()
+function Pai() {
+  return <Filho />
+}
 
+function Filho() {
+  return <Neto />
+}
+
+function Neto() {
+  const { tema, setTema } = useTema()
   return (
     <button onClick={() => setTema(tema === 'claro' ? 'escuro' : 'claro')}>
-      Alternar tema: {tema}
+      Tema atual: {tema}
     </button>
   )
 }
 ```
+
+---
+
+# Integrando o Provider
+
+- O `Provider` envolve os componentes que terão acesso ao contexto.
+- Qualquer componente dentro da árvore pode usar `useTema()`, sem precisar de props.
+
+```jsx
+import { TemaProvider } from './TemaContext'
+
+function App() {
+  return (
+    <TemaProvider>
+      <Pai />
+    </TemaProvider>
+  )
+}
+```
+
+---
+
+# Quando Usar Context
+
+- Dados que muitos componentes, em níveis diferentes, precisam ler ou alterar. Exemplos comuns:
+  - Tema (claro/escuro).
+  - Usuário autenticado (dados de login).
+  - Idioma da aplicação (i18n).
+  - Itens do carrinho de compras.
+- **Não é** para todo e qualquer estado: se só um componente (ou pai e filho direto) usa o dado, `useState` + props já resolve.
 
 ---
 
