@@ -3,3 +3,4 @@ build
 site
 venv
 __pycache__
+docs/quizzes
