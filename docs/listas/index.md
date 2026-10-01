@@ -7,4 +7,6 @@ As listas a seguir servem como guia de estudo para o quiz teórico de cada unida
     - [Lista 02](lista02.md)
 - Unidade 02
     - [Lista 03](lista03.md)
+- Unidade 03
+    - [Lista 04](lista04.md)
 
