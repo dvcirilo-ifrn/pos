@@ -67,6 +67,24 @@ print(response)
 - Chave é passada no cabeçalho HTTP
 
 ---
+# JWT (*JSON Web Token*)
+
+- Formato de token usado por muitas APIs para autenticação.
+- Três partes separadas por ponto: `header.payload.assinatura`.
+    - *Payload* carrega dados do usuário (ex. id, permissões) e a validade.
+    - Assinatura garante que o token não foi alterado.
+- Servidor não precisa guardar sessão: só verifica a assinatura.
+
+---
+# *Access* e *Refresh Token*
+
+- **Access token**: usado no cabeçalho `Authorization: Bearer <token>` em cada requisição.
+    - Validade curta (minutos), para limitar o estrago se for roubado.
+- **Refresh token**: usado só para obter um novo *access token* quando ele expira.
+    - Validade mais longa, guardado com mais cuidado.
+- O exemplo do SUAP a seguir já usa esse fluxo: `token/pair` retorna o `access`, que vai no header `Authorization`.
+
+---
 # Exemplo SUAP
 
 ```python

@@ -862,6 +862,35 @@ useEffect(() => {
 - Prefira funções internas assíncronas e condições de saída (`if (!valor) return;`) para controlar o fluxo.
 
 ---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 16px; }</style>
+
+# Loading e Erros
+
+- Toda chamada assíncrona tem 3 estados possíveis: **carregando**, **sucesso** ou **erro**.
+- A interface deve refletir cada um deles — sem isso, o usuário só vê uma tela vazia ou quebrada.
+
+```jsx
+function Posts() {
+  const [posts, setPosts] = useState([])
+  const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState(null)
+
+  useEffect(() => {
+    fetch('/api/posts')
+      .then(res => res.json())
+      .then(setPosts)
+      .catch(setErro)
+      .finally(() => setCarregando(false))
+  }, [])
+
+  if (carregando) return <p>Carregando...</p>
+  if (erro) return <p>Erro ao carregar posts.</p>
+  return <ul>{posts.map(p => <li key={p.id}>{p.title}</li>)}</ul>
+}
+```
+
+---
 
 # Exemplo: JSONPlaceholder
 
@@ -931,6 +960,92 @@ export function PostList() {
 ```
 
 ---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 16px; }</style>
+
+# Loading e Erros no `PostList`
+
+- Aplicando o padrão anterior ao componente real, com `getPosts()`:
+
+```jsx
+export function PostList() {
+  const [posts, setPosts] = useState([])
+  const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState(null)
+
+  useEffect(() => {
+    getPosts()
+      .then(setPosts)
+      .catch(() => setErro('Não foi possível carregar os posts.'))
+      .finally(() => setCarregando(false))
+  }, [])
+
+  if (carregando) return <p>Carregando...</p>
+  if (erro) return <p>{erro}</p>
+
+  return (
+    <div>
+      <h2>Posts</h2>
+      <ul>
+        {posts.slice(0, 10).map(post => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+```
+
+---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 16px; }</style>
+
+# Listas Paginadas
+
+- APIs com muitos registros costumam paginar: devolvem só uma parte da lista por vez.
+- O Django REST Framework, por exemplo, devolve esse formato por padrão:
+
+```json
+{
+  "count": 100,
+  "next": "https://api.exemplo.com/posts/?page=2",
+  "previous": null,
+  "results": [ /* só os itens desta página */ ]
+}
+```
+
+- `results` é a página atual; `next`/`previous` são as URLs das páginas vizinhas (ou `null` se não houver).
+
+---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 16px; }</style>
+
+# Carregando Mais Itens
+
+- Guarda a URL da próxima página e acrescenta os novos itens à lista, em vez de substituí-la.
+- `getPosts` passa a aceitar opcionalmente uma URL completa — a própria API já devolve essa URL em `next`.
+
+```jsx
+const [posts, setPosts] = useState([])
+const [proxima, setProxima] = useState(null)
+
+useEffect(() => {
+  getPosts().then(dados => {
+    setPosts(dados.results)
+    setProxima(dados.next)
+  })
+}, [])
+
+async function carregarMais() {
+  const dados = await getPosts(proxima) // URL completa da próxima página
+  setPosts([...posts, ...dados.results])
+  setProxima(dados.next)
+}
+```
+
+- No JSX: `<ul>` com os `posts`, e um botão `onClick={carregarMais}` que só aparece `{proxima && ...}`.
+
+---
 
 # Integrando no App
 
@@ -949,6 +1064,117 @@ function App() {
 }
 
 export default App
+```
+
+---
+
+# Cliente da API: Criando um Post
+
+- Adicione uma função de escrita em `src/api/client.js`, usando o método `POST`:
+
+```javascript
+export async function createPost(post) {
+  const res = await fetch(`${BASE_URL}/posts`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(post)
+  })
+  return res.json()
+}
+```
+
+---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 16px; }</style>
+
+# Formulário Controlado
+
+- Cada `input` tem seu valor controlado por um estado (`value` + `onChange`).
+- Crie o arquivo `src/components/NewPostForm.jsx`:
+
+```jsx
+import { useState } from 'react'
+import { createPost } from '../api/client'
+
+export function NewPostForm() {
+  const [title, setTitle] = useState('')
+  const [body, setBody] = useState('')
+
+  async function handleSubmit(e) {
+    e.preventDefault() // evita o recarregamento da página
+    await createPost({ title, body, userId: 1 })
+    setTitle('')
+    setBody('')
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Título" />
+      <textarea value={body} onChange={e => setBody(e.target.value)} placeholder="Conteúdo" />
+      <button type="submit">Criar Post</button>
+    </form>
+  )
+}
+```
+
+---
+
+# Integrando o Formulário no App
+
+```jsx
+import { PostList } from './components/PostList'
+import { NewPostForm } from './components/NewPostForm'
+
+function App() {
+  return (
+    <div>
+      <h1>Cliente JSONPlaceholder</h1>
+      <NewPostForm />
+      <PostList />
+    </div>
+  )
+}
+
+export default App
+```
+
+- O JSONPlaceholder não persiste os dados de verdade: o post criado não vai aparecer na lista.
+- Em uma API real, você atualizaria a lista após a criação — levantando o estado de `posts` para o componente pai, como visto anteriormente.
+
+---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 16px; }</style>
+
+# Formulário com Upload de Arquivo
+
+- Um `<input type="file">` não tem `value`: o navegador não permite controlar o conteúdo de um campo de arquivo por código.
+- O arquivo escolhido fica em `e.target.files` (uma lista, mesmo para seleção única).
+
+```jsx
+const [foto, setFoto] = useState(null)
+
+<input type="file" accept="image/*" onChange={e => setFoto(e.target.files[0])} />
+```
+
+---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 16px; }</style>
+
+# Enviando o Arquivo com `FormData`
+
+- JSON não transporta arquivos. Para enviar texto e arquivo juntos, usa-se `FormData`.
+- Não defina o cabeçalho `Content-Type` manualmente: o navegador monta o `multipart/form-data` com a divisão correta.
+
+```jsx
+async function handleSubmit(e) {
+  e.preventDefault()
+  const dados = new FormData()
+  dados.append('title', title)
+  if (foto) {
+    dados.append('foto', foto)
+  }
+  await fetch(`${BASE_URL}/posts`, { method: 'POST', body: dados })
+}
 ```
 
 ---
@@ -1154,6 +1380,143 @@ function BotaoVoltar() {
 ```jsx
 <Route path="*" element={<h1>Página não encontrada</h1>} />
 ```
+
+---
+
+# Autenticação com JWT no Cliente
+
+- Ao fazer login, a API retorna um *access* e um *refresh token* (JWT, vistos na Aula 13).
+- O cliente precisa guardar esses tokens, enviá-los nas próximas requisições e renová-los quando expiram.
+
+---
+
+# Guardando o Token
+
+- `useState` sozinho não serve: o estado se perde ao recarregar a página.
+- O `localStorage` guarda o token no navegador, entre recarregamentos.
+
+```jsx
+async function entrar(email, senha) {
+  const resposta = await fetch(`${API_URL}/auth/login/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, senha }),
+  })
+  const { access, refresh } = await resposta.json()
+  localStorage.setItem('access', access)
+  localStorage.setItem('refresh', refresh)
+}
+```
+
+---
+
+# Enviando o Token nas Requisições
+
+- Centralizar o acesso à API em uma função evita repetir o cabeçalho em cada chamada.
+
+```jsx
+export function api(caminho, opcoes = {}) {
+  const access = localStorage.getItem('access')
+  const headers = { 'Content-Type': 'application/json' }
+  if (access) {
+    headers.Authorization = `Bearer ${access}`
+  }
+  return fetch(`${API_URL}${caminho}`, { ...opcoes, headers }).then(r => r.json())
+}
+```
+
+---
+<style scoped>section { font-size: 24px; }</style>
+
+# Renovando o Token
+
+- O *access token* expira rápido. Quando a API responde `401`, tenta renovar com o *refresh token* antes de desistir.
+
+```jsx
+async function renovarToken() {
+  const refresh = localStorage.getItem('refresh')
+  const resposta = await fetch(`${API_URL}/auth/renovar/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ refresh }),
+  })
+  if (!resposta.ok) return false
+  const { access } = await resposta.json()
+  localStorage.setItem('access', access)
+  return true
+}
+```
+
+---
+<style scoped>section { font-size: 22px; }</style>
+
+# Contexto de Autenticação
+
+- Mesmo padrão do `TemaContext`: um `Provider` guarda o estado e um *hook* (`useAuth`) o expõe para toda a árvore.
+
+```jsx
+const AuthContext = createContext()
+
+export function AuthProvider({ children }) {
+  const [usuario, setUsuario] = useState(null)
+  const [carregando, setCarregando] = useState(true)
+  useEffect(() => {
+    if (!localStorage.getItem('access')) return setCarregando(false)
+    api('/auth/eu/').then(setUsuario).finally(() => setCarregando(false))
+  }, [])
+  async function sair() {
+    localStorage.removeItem('access')
+    localStorage.removeItem('refresh')
+    setUsuario(null)
+  }
+  return (
+    <AuthContext.Provider value={{ usuario, carregando, setUsuario, sair }}>
+      {children}
+    </AuthContext.Provider>
+  )
+}
+```
+
+- `useAuth` é só um `useContext(AuthContext)`, igual ao `useTema` de antes.
+
+---
+
+# Rotas Protegidas
+
+- Mesmo papel do componente `Layout` já visto: envolve as rotas que exigem login.
+- Usa o contexto para decidir se deixa passar (`Outlet`) ou redireciona (`Navigate`).
+
+```jsx
+function RotaProtegida() {
+  const { usuario, carregando } = useAuth()
+
+  if (carregando) return <p>Carregando...</p>
+  if (!usuario) return <Navigate to="/login" />
+
+  return <Outlet />
+}
+```
+
+---
+
+# Integrando ao App
+
+```jsx
+<BrowserRouter>
+  <AuthProvider>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route element={<RotaProtegida />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/perfil" element={<Perfil />} />
+      </Route>
+    </Routes>
+  </AuthProvider>
+</BrowserRouter>
+```
+
+- `AuthProvider` envolve tudo: até a página de login precisa saber se já existe um usuário logado.
+- `RotaProtegida` fica só nas rotas que exigem login — as demais ficam de fora, como `/login`.
 
 ---
 # <!--fit--> Dúvidas? 🤔

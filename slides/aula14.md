@@ -360,6 +360,37 @@ npx vite build
 npx vite preview
 ```
 ---
+<style scoped>section { font-size: 24px; }</style>
+
+# Variáveis de Ambiente
+
+- Cada ambiente (desenvolvimento, produção) pode usar configurações diferentes, como o endereço da API.
+- O Vite lê variáveis de um arquivo `.env` na raiz do projeto.
+- Toda variável exposta ao código do navegador deve começar com `VITE_`.
+
+```
+# .env
+VITE_API_URL=https://minha-api.com/api
+```
+
+---
+<style scoped>section { font-size: 24px; }</style>
+
+# Lendo Variáveis de Ambiente
+
+- As variáveis ficam disponíveis em `import.meta.env`:
+
+```javascript
+const API_URL = import.meta.env.VITE_API_URL
+
+fetch(`${API_URL}/posts`)
+```
+
+- O `.env` não deve ir para o *git*: adicione-o ao `.gitignore`.
+- Um `.env.example` (sem valores reais) ajuda quem for rodar o projeto depois.
+- As variáveis são lidas no momento da *build*: ao trocar alguma, rode `vite dev`/`vite build` de novo.
+
+---
 <style scoped>section { font-size: 26px; }</style>
 
 # Projeto 01
