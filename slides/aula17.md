@@ -33,7 +33,7 @@ img {
 
 - JSX, componentes, props e state funcionam exatamente como no React web.
 - `useState`, `useEffect`, Context API, hooks customizados: tudo igual.
-- A diferença está no que cada componente *renderiza* e em algumas APIs específicas da plataforma — é isso que esta aula cobre.
+- A diferença está no que cada componente *renderiza* e em algumas APIs específicas da plataforma.
 
 ---
 <style scoped>section { font-size: 24px; }</style>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 
 # Combinando Estilos
 
-- A prop `style` também aceita um *array*: os estilos são aplicados em ordem, como uma mesclagem.
+- A prop `style` também aceita um *array*: os estilos são aplicados em ordem.
 
 ```jsx
 <Text style={[estilos.secundario, styles.descricao]}>
@@ -129,7 +129,7 @@ import { Pressable, Text } from 'react-native'
 
 # Formulários: `TextInput` e `onChangeText`
 
-- Não existe elemento `<input>`. O componente `TextInput` chama `onChangeText` já com o texto novo — não um `Event` como no `onChange` da web.
+- Não existe elemento `<input>`. O componente `TextInput` chama `onChangeText` já com o texto novo e não um `Event` como no `onChange` da web.
 
 ```jsx
 // Web
@@ -275,7 +275,7 @@ export default function Layout() {
 </Stack.Protected>
 ```
 
-- Ao entrar ou sair, o app troca de telas sozinho — sem precisar navegar manualmente.
+- Ao entrar ou sair, o app troca de telas sozinho sem precisar navegar manualmente.
 
 ---
 <style scoped>section { font-size: 22px; }</style>
@@ -283,7 +283,8 @@ export default function Layout() {
 
 # Armazenamento Seguro
 
-- Não existe `localStorage` no celular. O [`expo-secure-store`](https://docs.expo.dev/versions/latest/sdk/securestore/) guarda dados de forma criptografada — útil para tokens de autenticação.
+- Não existe `localStorage` no celular. O [`expo-secure-store`](https://docs.expo.dev/versions/latest/sdk/securestore/) guarda dados de forma criptografada;
+- Útil para tokens de autenticação.
 - Diferença importante: a API é **assíncrona** (`await`), enquanto o `localStorage` é síncrono.
 
 ```jsx
@@ -351,7 +352,7 @@ await fetch(`${API_URL}/auth/eu/`, { method: 'PATCH', body: dados })
 <style scoped>section { font-size: 22px; }</style>
 <style scoped>pre { font-size: 16px; }</style>
 
-# Listas Performáticas: `FlatList`
+# `FlatList`
 
 - Mapear uma lista grande com `.map()` dentro de uma `ScrollView` renderiza *todos* os itens de uma vez.
 - `FlatList` renderiza só os itens visíveis na tela (virtualização) — importante em listas longas no celular.
@@ -375,7 +376,7 @@ import { FlatList } from 'react-native'
 
 - Na web, a página recarrega (ou o componente é desmontado) ao trocar de rota.
 - No app, as telas ficam empilhadas: voltar para uma tela não a remonta, então o `useEffect` não dispara de novo.
-- O `useFocusEffect` do Expo Router roda sempre que a tela **volta a ficar visível** — útil para atualizar dados após voltar de outra tela.
+- O `useFocusEffect` do Expo Router roda sempre que a tela **volta a ficar visível**: útil para atualizar dados após voltar de outra tela.
 
 ```jsx
 import { useFocusEffect } from 'expo-router'
@@ -445,7 +446,7 @@ npx expo start
 # Tarefa 16
 
 - Pegue o cliente web que você já fez (JSONPlaceholder ou similar) e recrie as mesmas telas em um app Expo.
-- Reaproveite o máximo de lógica possível: o *wrapper* da API (`fetch`) muda muito pouco — a diferença está nos componentes visuais e na navegação.
+- Reaproveite o máximo de lógica possível: o *wrapper* da API (`fetch`) muda muito pouco, a diferença está nos componentes visuais e na navegação.
 - Troque: `<div>`/`<input>`/`<button>` pelos componentes do React Native; o React Router pelo Expo Router; o `localStorage` (se usado) pelo `expo-secure-store`.
 - Teste no navegador (`w`) e, se possível, no celular com o Expo Go.
 
